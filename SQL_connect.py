@@ -5,7 +5,7 @@ dat = pyodbc.connect(driver    ="{iSeries Access ODBC Driver}",
                      system    ="10.1.1.1",
                      uid       ="AUTOSQL",
                      pwd       ="AUTOSQL")
-
+ttt
 print(dat)
 
 
