@@ -18,6 +18,7 @@ class InkaCam(ctk.CTk):
             self.main_list.append(sublist)
         self.book.close()
         self.image = ctk.CTkImage(Image.open("logo.png"), size=(300,50))
+
         """Windows geometry"""
 
         self.geometry("1920x1080+1+1")
@@ -30,8 +31,7 @@ class InkaCam(ctk.CTk):
 
         """Windows elemente"""
 
-        #self.wilkommen = ctk.CTkLabel(self,text="Scannen Sie bitte den Artikel", bg_color='gray', font=ctk.CTkFont('Calibri', 150, 'bold'))
-        #self.wilkommen.grid(row=1, column=0)
+
         self.lbl_up_left = ctk.CTkLabel(self, text="", height=150, fg_color="black", bg_color='black',
                                         text_color="white", corner_radius=50, font=ctk.CTkFont('Verdana ', 100, 'bold'))
         self.lbl_up_left.grid(row=0, column=0, padx=160, pady=(25, 15), sticky='we')
@@ -49,7 +49,10 @@ class InkaCam(ctk.CTk):
         self.entry.grid(row=2, column=3, columnspan=2, pady=10)
 
         self.entry.bind('<Return>', self.get)
-        self.bind('<Escape>', self.quit)
+
+        def exit(e):
+            self.destroy()
+        self.bind('<Escape>', exit)
 
     def get(self, event):
         self.lbl_up_left.configure(fg_color="gray25")
@@ -80,8 +83,6 @@ class InkaCam(ctk.CTk):
 
         self.entry.delete(0, "end")
 
-    def quit(self, event):
-        self.destroy()
 
 if __name__ == "__main__":
     inkacam = InkaCam()
